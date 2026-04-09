@@ -40,4 +40,9 @@ class LinkedInDriver implements SyncDriverInterface
             'message' => 'LinkedIn modular driver placeholder executed successfully.'
         ]));
     }
+    public function getApi(array $config = []): mixed
+    {
+        return null;
+    }
 }
+
