@@ -2,13 +2,13 @@
 
 namespace Anibalealvarezs\LinkedInHubDriver\Drivers;
 
-use Anibalealvarezs\ApiSkeleton\Interfaces\SyncDriverInterface;
-use Anibalealvarezs\ApiSkeleton\Interfaces\AuthProviderInterface;
-use Anibalealvarezs\ApiSkeleton\Traits\HasUpdatableCredentials;
+use Anibalealvarezs\ApiDriverCore\Interfaces\SyncDriverInterface;
+use Anibalealvarezs\ApiDriverCore\Interfaces\AuthProviderInterface;
+use Anibalealvarezs\ApiDriverCore\Traits\HasUpdatableCredentials;
 use Symfony\Component\HttpFoundation\Response;
 use Psr\Log\LoggerInterface;
 use DateTime;
-use Anibalealvarezs\ApiSkeleton\Interfaces\SeederInterface;
+use Anibalealvarezs\ApiDriverCore\Interfaces\SeederInterface;
 
 class LinkedInDriver implements SyncDriverInterface
 {
@@ -90,6 +90,20 @@ class LinkedInDriver implements SyncDriverInterface
     }
     public function boot(): void
     {
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getAssetPatterns(): array
+    {
+        return [
+            'linkedin_page' => [
+                'prefix' => 'li:page',
+                'hostnames' => ['linkedin.com'],
+                'url_id_regex' => null
+            ]
+        ];
     }
 }
 
