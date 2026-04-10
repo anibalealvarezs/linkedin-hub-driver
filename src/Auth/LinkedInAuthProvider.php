@@ -2,7 +2,7 @@
 
 namespace Anibalealvarezs\LinkedInHubDriver\Auth;
 
-use Anibalealvarezs\ApiDriverCore\Interfaces\AuthProviderInterface;
+use Anibalealvarezs\ApiSkeleton\Interfaces\AuthProviderInterface;
 
 class LinkedInAuthProvider implements AuthProviderInterface
 {
