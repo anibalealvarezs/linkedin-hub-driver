@@ -88,5 +88,9 @@ class LinkedInDriver implements SyncDriverInterface
     {
         // Placeholder for future implementation
     }
+    public function boot(): void
+    {
+    }
 }
+
 
