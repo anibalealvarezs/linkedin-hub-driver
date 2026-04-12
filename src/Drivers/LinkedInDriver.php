@@ -12,6 +12,7 @@ use Anibalealvarezs\ApiDriverCore\Interfaces\SeederInterface;
 
 class LinkedInDriver implements SyncDriverInterface
 {
+    use \Anibalealvarezs\ApiDriverCore\Traits\SyncDriverTrait;
 
     /**
      * Store credentials for this driver.
@@ -180,6 +181,34 @@ class LinkedInDriver implements SyncDriverInterface
                 'url_id_regex' => null
             ]
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function getPageTypes(): array
+    {
+        return [
+            'linkedin_page' => 'LinkedIn Page'
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function getAccountTypes(): array
+    {
+        return [
+            'linkedin_page' => 'LinkedIn Page'
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function getEntityPaths(): array
+    {
+        return [];
     }
 
     /**
