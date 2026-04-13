@@ -20,6 +20,11 @@ class LinkedInAuthProvider implements AuthProviderInterface
         return $this->credentials['access_token'] ?? '';
     }
 
+    public function getUserId(): string
+    {
+        return $this->credentials['person_id'] ?? $this->credentials['user_id'] ?? '';
+    }
+
     public function isValid(): bool
     {
         return !empty($this->getAccessToken());
