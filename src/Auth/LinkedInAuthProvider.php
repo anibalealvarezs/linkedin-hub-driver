@@ -35,6 +35,11 @@ class LinkedInAuthProvider implements AuthProviderInterface
         return false;
     }
 
+    public function setAccessToken(string $token): void
+    {
+        $this->credentials['access_token'] = $token;
+    }
+
     public function refresh(): bool
     {
         return false;
