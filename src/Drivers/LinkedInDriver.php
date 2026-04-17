@@ -115,7 +115,14 @@ class LinkedInDriver implements SyncDriverInterface
         return 'linkedin';
     }
 
-    public function sync(DateTime $startDate, DateTime $endDate, array $config = []): Response
+    public function sync(
+        DateTime $startDate,
+        DateTime $endDate,
+        array $config = [],
+        ?callable $shouldContinue = null,
+        ?callable $identityMapper = null
+    ): Response
+
     {
         if ($this->logger) {
             $this->logger->info("LinkedInDriver (Modular): No native implementation yet. Sync skipped.");
@@ -219,7 +226,8 @@ class LinkedInDriver implements SyncDriverInterface
     /**
      * @inheritdoc
      */
-    public function initializeEntities(mixed $entityManager, array $config = []): array
+    public function initializeEntities(array $config = []): array
+
     {
         return ['initialized' => 0, 'skipped' => 0];
     }
@@ -227,7 +235,8 @@ class LinkedInDriver implements SyncDriverInterface
     /**
      * @inheritdoc
      */
-    public function reset(mixed $entityManager, string $mode = 'all', array $config = []): array
+    public function reset(string $mode = 'all', array $config = []): array
+
     {
         return ['cleared' => 0, 'mode' => $mode];
     }
