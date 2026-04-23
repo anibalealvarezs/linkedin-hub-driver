@@ -184,7 +184,7 @@ class LinkedInDriver implements SyncDriverInterface
     /**
      * @inheritdoc
      */
-    public function getAssetPatterns(): array
+    public static function getAssetPatterns(): array
     {
         return [
             'linkedin_page' => [
