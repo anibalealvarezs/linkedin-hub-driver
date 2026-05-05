@@ -9,10 +9,24 @@ use Symfony\Component\HttpFoundation\Response;
 use Psr\Log\LoggerInterface;
 use DateTime;
 use Anibalealvarezs\ApiDriverCore\Interfaces\SeederInterface;
+use Anibalealvarezs\ApiDriverCore\Interfaces\CanonicalMetricDictionaryProviderInterface;
+use Anibalealvarezs\ApiDriverCore\Interfaces\AggregationProfileProviderInterface;
+use Anibalealvarezs\ApiDriverCore\Classes\AggregationProfileTemplates;
 
-class LinkedInDriver implements SyncDriverInterface
+class LinkedInDriver implements SyncDriverInterface, CanonicalMetricDictionaryProviderInterface, AggregationProfileProviderInterface
 {
     use \Anibalealvarezs\ApiDriverCore\Traits\SyncDriverTrait;
+
+    public static function getAggregationProfiles(): array
+    {
+        return [
+            AggregationProfileTemplates::adsHierarchyProfile(
+                channel: 'linkedin',
+                key: 'linkedin_ads',
+                label: 'LinkedIn Ads Performance'
+            ),
+        ];
+    }
 
     /**
      * Store credentials for this driver.
@@ -220,6 +234,25 @@ class LinkedInDriver implements SyncDriverInterface
     public static function getEntityPaths(): array
     {
         return [];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function getCanonicalMetricDictionary(): array
+    {
+        return [
+            'spend' => ['cost_in_local_currency'],
+            'clicks' => ['clicks'],
+            'impressions' => ['impressions'],
+            'conversions' => ['external_website_conversions'],
+            'reach' => ['reach'],
+        ];
+    }
+
+    public static function getPlatformEntityIdField(): string
+    {
+        return 'urn';
     }
 
     /**
